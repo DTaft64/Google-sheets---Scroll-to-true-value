@@ -1,0 +1,39 @@
+ReadMe
+
+Script: notOnOpen()
+
+Overview
+
+This Google Apps Script scans the “Stocks & Flows” sheet in a Google Sheet, searches column G for the first TRUE value, and automatically scrolls the active view to that cell, ensuring it appears near the top of the screen.
+
+Maintenance
+
+To customize this script for your sheet, update the following values in the code:
+	1.	Sheet Name
+Replace "Stocks & Flows" with the name of your sheet:
+
+var sheet = spreadsheet.getSheetByName("Your Sheet Name");
+
+
+	2.	Target Column
+Modify the column to search by changing the column index (7 for column G):
+
+var columnG = sheet.getRange(1, 7, lastRow).getValues(); // 7 = Column G
+
+
+	3.	Offset Rows
+Adjust the +23 offset to set how far down the matched row appears:
+
+var targetRow = Math.min(lastRow, i + 23);
+
+How to Use
+	1.	Run the notOnOpen() function from the script editor.
+	2.	The script will:
+	•	Locate the first TRUE in the specified column.
+	•	Scroll the sheet so the matching row is visible near the top of the screen.
+	•	Stop searching after the first match.
+
+Troubleshooting
+	•	Sheet Not Found: Verify the sheet name matches the one specified in the script.
+	•	No Effect: Ensure the specified column contains TRUE values.
+	•	Error: Double-check the column index and data range.

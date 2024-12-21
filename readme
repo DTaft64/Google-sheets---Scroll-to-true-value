@@ -1,39 +1,47 @@
-ReadMe
+# notOnOpen() Script
 
-Script: notOnOpen()
+## Overview
 
-Overview
+This Google Apps Script scans the “Stocks & Flows” sheet in a Google Sheet, searches column G for the first TRUE value, and scrolls the active view to that cell, positioning it near the top of the screen.
 
-This Google Apps Script scans the “Stocks & Flows” sheet in a Google Sheet, searches column G for the first TRUE value, and automatically scrolls the active view to that cell, ensuring it appears near the top of the screen.
+## Maintenance
 
-Maintenance
+To adapt this script to your specific use case, modify the following variables in the code:
 
-To customize this script for your sheet, update the following values in the code:
-	1.	Sheet Name
-Replace "Stocks & Flows" with the name of your sheet:
+1. Sheet Name
 
-var sheet = spreadsheet.getSheetByName("Your Sheet Name");
+Update the name of the sheet to match your sheet name:
 
+var sheet = spreadsheet.getSheetByName("Stocks & Flows");
 
-	2.	Target Column
-Modify the column to search by changing the column index (7 for column G):
+2. Target Column
+
+Set the column to search by updating the column index. For example, 7 corresponds to column G:
 
 var columnG = sheet.getRange(1, 7, lastRow).getValues(); // 7 = Column G
 
+3. Row Offset
 
-	3.	Offset Rows
-Adjust the +23 offset to set how far down the matched row appears:
+Change the +23 offset to adjust how far down the matched row appears on the screen:
 
 var targetRow = Math.min(lastRow, i + 23);
 
-How to Use
-	1.	Run the notOnOpen() function from the script editor.
-	2.	The script will:
+## How to Use
+	1.	Add this script to your Google Sheet:
+	•	Go to Extensions > Apps Script.
+	•	Paste the script into the editor.
+	•	Save the script.
+	2.	Run the notOnOpen() function from the Apps Script editor or create a trigger to automate it.
+	3.	The script will:
 	•	Locate the first TRUE in the specified column.
-	•	Scroll the sheet so the matching row is visible near the top of the screen.
-	•	Stop searching after the first match.
+	•	Scroll the sheet so the matched row appears near the top of the screen.
+	•	Stop searching after finding the first match.
 
-Troubleshooting
-	•	Sheet Not Found: Verify the sheet name matches the one specified in the script.
-	•	No Effect: Ensure the specified column contains TRUE values.
-	•	Error: Double-check the column index and data range.
+## Troubleshooting
+	•	Sheet Not Found: Ensure the sheet name matches the value set in the script.
+	•	No Effect: Verify that the target column contains TRUE values.
+	•	Errors: Confirm that the column index and data range are correctly defined.
+
+## License
+
+This script is provided “as-is” and can be freely modified and adapted to your needs.
